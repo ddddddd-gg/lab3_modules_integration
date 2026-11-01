@@ -31,9 +31,10 @@ jobs:
   
 
       - name: run tests
+        timeout-minutes: 5
         run: |
           python src/matrix_processing.py
           python src/matrix_output.py
-          python tests/integration_tests.py
+          python -m unittest discover -s tests -p "*_tests.py"
         
   
