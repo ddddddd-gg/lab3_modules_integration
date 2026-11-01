@@ -17,7 +17,19 @@ class MatrixTranspositionTestCase(unittest.TestCase):
             self.assertEqual(response.status_code, 405, "сервер доступен")   # проверяем, отвечает ли сервер в принципе
 
 
-    # проверка доступности сервера вывода результата
+    # проверка доступности сервера обработки
+    def test_output_connection(self):
+        self.out_url = 'http://localhost:5002/output'
+        try:
+            response = requests.post(
+                self.out_url
+                )
+        except:
+            print("сервер не отвечает")   # проверяем, отвечает ли сервер
+        else:
+            self.assertEqual(response.status_code, 405, "сервер доступен")   # проверяем, отвечает ли сервер в принципе
+
+    # проверка корректности передачи данных в модуль
     def test_proc_connection(self):
         self.out_url = 'http://localhost:5002/output'
         test_matrix = [[1, 55], [2, -4]]
