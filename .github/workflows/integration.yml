@@ -15,12 +15,13 @@ jobs:
         uses: actions/setup-python@v5
         with:
             python-node-version: '3.11'
+            cache: 'pip'
   
       - name: install dependencies
         run: |
           python -m pip install --upgrade pip
-          python pip install flake
-          python pip install requests
+          pip install flake
+          pip install requests
   
       - name: run linting 
         run: |
@@ -30,6 +31,9 @@ jobs:
   
 
       - name: run tests
-        run: python integration_tests.py
+        run: |
+          python matrix_processing.py
+          python matrix_output.py
+          python integration_tests.py
         
   
