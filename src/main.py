@@ -5,19 +5,6 @@ except:
 else:
 
 
-    # # специальный get для этой программы с обработкой исключений
-    # def get_data(url, module_name):
-    #     try:
-    #         response_input = requests.get(
-    #             'http://localhost:5000/input'
-    #         )
-    #         if response_input.status_code == 200:
-    #             matrix = response_input.json().get('matrix')
-    #         else:
-    #             print("Ошибка ввода")
-    #     except requests.exceptions.ConnectionError:
-    #         print("Модуль ввода matrix_input.py не отвечает")
-
 
     # создание пустой матрицы
     def e_matrix_create(n, m):
