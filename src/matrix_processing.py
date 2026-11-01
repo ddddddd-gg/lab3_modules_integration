@@ -49,7 +49,7 @@ def send_transposed():
         return jsonify({'error': 'Данные матрицы отсутствуют'}), 400
         
     result = matrix_transpose(matrix)
-    return jsonify({'transposed_matrix': result}), 200
+    return jsonify({'matrix': result}), 200
 
 if __name__ == '__main__':
     app.run(port=5001)
