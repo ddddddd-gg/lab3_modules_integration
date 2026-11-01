@@ -32,8 +32,8 @@ jobs:
 
       - name: run tests
         run: |
-          python src\matrix_processing.py
-          python src\matrix_output.py
-          python tests\integration_tests.py
+          python src/matrix_processing.py
+          python src/matrix_output.py
+          python tests/integration_tests.py
         
   
