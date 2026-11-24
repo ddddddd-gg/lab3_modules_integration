@@ -10,6 +10,9 @@ dist/
 .env
 vemv/
 __pycache__/
+.coverage
+.pytest_cache
+.ini
 
 #Настройки IDE
 .vs
