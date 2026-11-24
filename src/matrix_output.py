@@ -1,12 +1,12 @@
 try:
     from flask import Flask, request, jsonify
-except:
+except ImportError:
     print("Критическая ошибка")
 else:
 
     app = Flask(__name__)
 
-    # получение количества строк и столбцов 
+    # получение количества строк и столбцов
     def get_n_m(matrix):
         n = 0
         m = 0
@@ -14,8 +14,8 @@ else:
             n += 1
             for items in sublist:
                 m += 1
-        m = int(m/n)
-        return (n, m)    #возвращаем размерность матрицы
+        m = int(m / n)
+        return (n, m)  # возвращаем размерность матрицы
 
     # функция для расчета наиболее длинного элемента (для ровного столбика)
     def max_length(n, m, matrix):
@@ -26,19 +26,18 @@ else:
         maxlen = max(lens)
         return maxlen
 
-
-    # вывод 
-    @app.route('/output', methods=['POST'])
+    # вывод
+    @app.route("/output", methods=["POST"])
     def matrix_output():
-        data = request.get_json()
+        data = request.get_json(silent=True)
         if data:
-            t_matrix = data.get('matrix')
+            t_matrix = data.get("matrix")
         else:
             t_matrix = None
-    
-        if t_matrix is None:
-            return jsonify({'error': 'Матрица отсутствует'}), 400
-        
+
+        if not t_matrix:
+            return jsonify({"error": "Матрица отсутствует"}), 400
+
         n, m = get_n_m(t_matrix)
         maxlen = max_length(n, m, t_matrix) + 2
 
@@ -52,12 +51,12 @@ else:
                     d = int(maxlen - len(str(t_matrix[i][j])))
                 else:
                     d = 1
-                line += str(t_matrix[i][j]) + d*" " 
-                if j == m-1:
+                line += str(t_matrix[i][j]) + d * " "
+                if j == m - 1:
                     line += "|"
             print(str(line))
-    
-        return jsonify({'status': 'Успешно выведено'}), 200
 
-    if __name__ == '__main__':
+        return jsonify({"status": "Успешно выведено"}), 200
+
+    if __name__ == "__main__":
         app.run(port=5002)
