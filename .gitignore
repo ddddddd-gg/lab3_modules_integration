@@ -12,7 +12,7 @@ vemv/
 __pycache__/
 .coverage
 .pytest_cache
-.ini
+pytest.ini
 
 #Настройки IDE
 .vs
